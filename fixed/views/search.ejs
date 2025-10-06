@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Projet Final (fixed)</title>
+    <!-- Optionally ajouter CSP via helmet côté serveur pour durcir -->
+  </head>
+  <body>
+    <h1>Recherche</h1>
+    <p>Connecté en: <%= user.username %> | <a href="/logout">Déconnexion</a></p>
+
+    <form action="/search" method="post">
+      <input name="q" placeholder="Tapez votre recherche">
+      <button>Rechercher</button>
+    </form>
+
+    <h2>Vos recherches sauvegardées :</h2>
+    <ul>
+      <% user.searches.forEach(s => { %>
+        <!-- Safe: EJS escape (default) and we sanitized on input -->
+        <li><%= s.text %> — <small><%= s.date.toLocaleString() %></small></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>

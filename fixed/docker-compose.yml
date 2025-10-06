@@ -1,0 +1,16 @@
+services:
+  web:
+    build: .
+    ports:
+      - "3001:3000"
+    depends_on:
+      - mongo
+    environment:
+      - SESSION_SECRET=replace_with_strong_secret
+  mongo:
+    image: mongo:6.0
+    restart: unless-stopped
+    volumes:
+      - mongodata_fix:/data/db
+volumes:
+  mongodata_fix:

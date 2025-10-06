@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Connexion</title></head>
+  <body>
+    <h1>Connexion</h1>
+    <% if (error) { %><p style="color:red"><%= error %></p><% } %>
+    <form action="/login" method="post">
+      <input name="username" placeholder="username">
+      <input name="password" placeholder="password" type="password">
+      <button>Conneter</button>
+    </form>
+  </body>
+</html>

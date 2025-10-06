@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+  <head><meta charset="utf-8"><title>Projet final (vulnerable)</title></head>
+  <body>
+    <h1>Recherche</h1>
+    <p>Connecté en: <%= user.username %> | <a href="/logout">Déconnexion</a></p>
+
+    <form action="/search" method="post">
+      <input name="q" placeholder="Tapez votre recherche">
+      <button>Rechercher</button>
+    </form>
+
+    <h2>Vos recherches sauvegardées :</h2>
+    <ul>
+      <% /* VULNERABILITÉ : rendu non échappé des textes */ %>
+      <% user.searches.forEach(s => { %>
+        <li><%- s.text %> — <small><%= s.date.toLocaleString() %></small></li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
